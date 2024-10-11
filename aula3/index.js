@@ -16,7 +16,7 @@ database.on('error', (error) => {
 })
 
 database.once('connected', () => {
-    console.log("DB connectado")
+    console.log("DB conectado")
 })
 
 //app.get('/', (req, res) => {
@@ -36,7 +36,7 @@ app.use('/api', routes)
 //criar a logica do negocio
 
 // const senha = process.env.SENHA
-// const usuario = process.env.USUARIO
+// const usuário = process.env.USUÁRIO
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
