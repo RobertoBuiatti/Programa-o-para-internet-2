@@ -1,0 +1,8 @@
+npm init
+criado o no scrypt no package.json o seguinte:  "start" : "nodemon index.js",
+npm i express mongoose mongodb nodemon dotenv
+
+conectado pelo roberto.buiatti@estudante.iftm.edu.br
+senha e usuario do database mongodb admin senha: 00zvhTKpa42cj5Fa
+
+o post manda para o postman via post e no postman foi colocado o valor em raw no formato em json

@@ -1,0 +1,46 @@
+# Arquivos de configuração do Node.js
+node_modules/
+
+# Arquivos de configuração do MongoDB
+mongodb-data/
+
+# Arquivos de log
+logs/
+
+# Arquivos de teste
+test/
+
+# Arquivos de desenvolvimento
+.vscode/
+.idea/
+
+# Arquivos de configuração do ambiente
+.env
+
+# Arquivos de cache
+.cache/
+
+# Arquivos de build
+build/
+
+# Arquivos de distribuição
+dist/
+
+# Arquivos de documentação
+docs/
+
+# Arquivos de exemplo
+examples/
+
+# Arquivos de teste de integração
+integration-tests/
+
+# Arquivos de teste de unidade
+unit-tests/
+
+# Arquivos de configuração do Docker
+Dockerfile
+docker-compose.yml
+
+# Arquivos de configuração do Kubernetes
+kubernetes/
