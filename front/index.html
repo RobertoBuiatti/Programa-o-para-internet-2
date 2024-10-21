@@ -4,21 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CRUD API - Frontend</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <h1>CRUD API - Frontend</h1>
 
     <div class="container">
+        <!-- Tabela para listar os dados -->
+        <table id="dataTable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Idade</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Linhas serão preenchidas pelo JavaScript -->
+            </tbody>
+        </table>
+
         <!-- Formulário para adicionar ou editar dados -->
         <form id="dataForm">
             <input type="hidden" id="id" />
-            <input type="text" id="name" placeholder="Nome" required />
-            <input type="number" id="age" placeholder="Idade" required />
+            <div class="form-group">
+                <label for="name">Nome:</label>
+                <input type="text" id="name" placeholder="Nome" required />
+            </div>
+            <div class="form-group">
+                <label for="age">Idade:</label>
+                <input type="number" id="age" placeholder="Idade" required />
+            </div>
             <button type="submit" id="submitButton">Adicionar</button>
         </form>
-
-        <div id="output"></div>
     </div>
 
     <script src="script.js"></script>

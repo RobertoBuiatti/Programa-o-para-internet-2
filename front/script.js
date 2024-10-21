@@ -1,27 +1,39 @@
 const API_URL = 'http://localhost:3000/api';
 
-// Função para exibir todos os registros
+// Função para exibir todos os registros em uma tabela
 async function fetchAllData() {
-    const response = await fetch(`${API_URL}/getAll`);
-    const data = await response.json();
-    const output = document.getElementById('output');
-    output.innerHTML = '';
+    try {
+        const response = await fetch(`${API_URL}/getAll`);
+        if (!response.ok) {
+            throw new Error('Erro ao buscar dados');
+        }
+        const data = await response.json();
+        const tbody = document.querySelector('#dataTable tbody');
+        tbody.innerHTML = ''; // Limpe o conteúdo anterior
 
-    data.forEach(item => {
-        const div = document.createElement('div');
-        div.classList.add('data-item');
-        div.innerHTML = `
-            <span>Nome: ${item.name}, Idade: ${item.age}</span>
-            <div>
-                <button class="edit" onclick="editData('${item._id}', '${item.name}', '${item.age}')">Editar</button>
-                <button class="delete" onclick="deleteData('${item._id}')">Deletar</button>
-            </div>
-        `;
-        output.appendChild(div);
-    });
+        if (data.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="4">Nenhum registro encontrado.</td></tr>';
+        } else {
+            data.forEach(item => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${item._id}</td>
+                    <td>${item.name}</td>
+                    <td>${item.age}</td>
+                    <td>
+                        <button class="edit" onclick="editData('${item._id}', '${item.name}', '${item.age}')">Editar</button>
+                        <button class="delete" onclick="deleteData('${item._id}')">Deletar</button>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+    } catch (error) {
+        console.error('Erro ao buscar dados:', error);
+    }
 }
 
-// Função para criar ou editar um registro
+// Função para criar ou atualizar um registro
 async function createOrUpdateData(id, name, age) {
     const url = id ? `${API_URL}/update/${id}` : `${API_URL}/post`;
     const method = id ? 'PATCH' : 'POST';
@@ -36,7 +48,6 @@ async function createOrUpdateData(id, name, age) {
 
     const data = await response.json();
     alert(id ? 'Registro atualizado com sucesso!' : 'Registro criado com sucesso!');
-    console.log(data);
     resetForm();
     fetchAllData(); // Atualizar a lista
 }

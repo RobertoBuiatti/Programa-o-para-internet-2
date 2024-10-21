@@ -14,48 +14,31 @@ h1 {
 
 .container {
     margin-top: 30px;
-    width: 50%;
+    width: 60%;
     text-align: center;
 }
 
-input {
-    width: 80%;
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+th, td {
+    border: 1px solid #ccc;
     padding: 10px;
-    margin: 10px 0;
-    font-size: 16px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
 }
 
 button {
-    padding: 10px 20px;
-    font-size: 16px;
-    background-color: #28a745;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #218838;
-}
-
-#output {
-    margin-top: 20px;
-}
-
-.data-item {
-    margin-bottom: 10px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    background-color: white;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.data-item button {
-    margin-left: 10px;
     padding: 5px 10px;
     cursor: pointer;
+    border: none;
+    color: white;
 }
 
 button.edit {
@@ -72,4 +55,28 @@ button.edit:hover {
 
 button.delete:hover {
     background-color: #c82333;
+}
+
+button[type="submit"] {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #28a745;
+}
+
+button[type="submit"]:hover {
+    background-color: #218838;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    font-size: 16px;
 }
