@@ -55,51 +55,93 @@ router.get("/getOne/:name", async (req, res) => {
 	}
 });
 
-// Rota UPDATE: atualizar um documento no banco de dados
-router.put("/update/:id", async (req, res) => {
-	const { id } = req.params;
-	const { name, age } = req.body;
+//rota update -> atualizar um documento no banco de dados
+router.patch('/update/:id', async (req, res) => {
+    try {
+        const id = req.params.id;
+        const updatedData = req.body;
 
-	if (!id) {
-		return res.status(400).json({ message: "ID é obrigatório" });
-	}
+        // Opção para retornar o novo documento após a atualização
+        const options = { new: true };
 
-	try {
-		const data = await Model.findByIdAndUpdate(
-			id,
-			{ name, age },
-			{ new: true }
-		);
-		if (!data) {
-			return res
-				.status(404)
-				.json({ message: "Nenhum registro encontrado" });
-		}
-		res.status(200).json(data);
-	} catch (error) {
-		res.status(400).json({ message: error.message });
-	}
+        // Atualizar o documento
+        const result = await Model.findByIdAndUpdate(id, updatedData, options);
+
+        // Verificar se o documento foi encontrado e atualizado
+        if (result) {
+            res.status(200).json(result);
+        } else {
+            res.status(404).json({ message: 'Documento não encontrado' });
+        }
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
 });
 
-// Rota DELETE: apagar um documento no banco de dados
-router.delete("/delete/:id", async (req, res) => {
-	const { id } = req.params;
+//rota delete -> apagar um documento no banco de dados
+router.delete('/delete/:id', async (req, res) => {
+    try {
+        const id = req.params.id;
+        
+        // Deletar o documento
+        const result = await Model.findByIdAndDelete(id);
 
-	if (!id) {
-		return res.status(400).json({ message: "ID é obrigatório" });
-	}
-
-	try {
-		const data = await Model.findByIdAndDelete(id);
-		if (!data) {
-			return res
-				.status(404)
-				.json({ message: "Nenhum registro encontrado" });
-		}
-		res.status(200).json({ message: "Registro deletado com sucesso" });
-	} catch (error) {
-		res.status(400).json({ message: error.message });
-	}
+        // Verificar se o documento foi encontrado e deletado
+        if (result) {
+            res.status(200).json({ message: 'Documento deletado com sucesso' });
+        } else {
+            res.status(404).json({ message: 'Documento não encontrado' });
+        }
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
 });
+
+// // Rota UPDATE: atualizar um documento no banco de dados
+// router.put("/update/:id", async (req, res) => {
+// 	const { id } = req.params;
+// 	const { name, age } = req.body;
+
+// 	if (!id) {
+// 		return res.status(400).json({ message: "ID é obrigatório" });
+// 	}
+
+// 	try {
+// 		const data = await Model.findByIdAndUpdate(
+// 			id,
+// 			{ name, age },
+// 			{ new: true }
+// 		);
+// 		if (!data) {
+// 			return res
+// 				.status(404)
+// 				.json({ message: "Nenhum registro encontrado" });
+// 		}
+// 		res.status(200).json(data);
+// 	} catch (error) {
+// 		res.status(400).json({ message: error.message });
+// 	}
+// });
+
+// // Rota DELETE: apagar um documento no banco de dados
+// router.delete("/delete/:id", async (req, res) => {
+// 	const { id } = req.params;
+
+// 	if (!id) {
+// 		return res.status(400).json({ message: "ID é obrigatório" });
+// 	}
+
+// 	try {
+// 		const data = await Model.findByIdAndDelete(id);
+// 		if (!data) {
+// 			return res
+// 				.status(404)
+// 				.json({ message: "Nenhum registro encontrado" });
+// 		}
+// 		res.status(200).json({ message: "Registro deletado com sucesso" });
+// 	} catch (error) {
+// 		res.status(400).json({ message: error.message });
+// 	}
+// });
 
 module.exports = router;
