@@ -10,15 +10,15 @@
     <h1>CRUD API - Frontend</h1>
 
     <div class="container">
+        <!-- Formulário para adicionar ou editar dados -->
         <form id="dataForm">
+            <input type="hidden" id="id" />
             <input type="text" id="name" placeholder="Nome" required />
             <input type="number" id="age" placeholder="Idade" required />
-            <button type="submit">Criar</button>
+            <button type="submit" id="submitButton">Adicionar</button>
         </form>
 
         <div id="output"></div>
-
-        <button id="getAll">Obter Todos</button>
     </div>
 
     <script src="script.js"></script>
