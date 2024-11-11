@@ -62,7 +62,7 @@ router.patch('/update/:id', async (req, res) => {
         const updatedData = req.body;
 
         // Opção para retornar o novo documento após a atualização
-        const options = { new: true };
+        const options = { new: true , strict: false};
 
         // Atualizar o documento
         const result = await Model.findByIdAndUpdate(id, updatedData, options);
