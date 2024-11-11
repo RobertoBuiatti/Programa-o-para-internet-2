@@ -4,10 +4,10 @@ const routes = require('./routes/routes')
 const app = express()
 
 // Habilitar CORS para permitir que o frontend acesse a API
-const cors = require('cors');
-app.use(cors());
+//const cors = require('cors');
+//app.use(cors());
 
-require("dotenv").config()
+//require("dotenv").config()
 
 const mongoString = process.env.DATABASE_URL
 const port = 3000
